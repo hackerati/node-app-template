@@ -1,0 +1,19 @@
+appsvr:
+  build: ./app
+  volumes:
+    - "app:/src/app"
+  expose:
+    - "3000"
+  command: nodemon -L app/bin/www
+
+nginx:
+  restart: always
+  build: ./nginx/
+  ports:
+    - "8080:8080"
+  volumes:
+    - /www/public
+  volumes_from:
+    - appsvr
+  links:
+    - appsvr:appsvr

@@ -126,7 +126,9 @@ This environment is designed to support GitHub Flow, which is described in more 
 To tail the log files from your containers:
 
 ```bash
-$ TODO
+$ vagrant ssh
+$ docker logs -f nodeexample_appsvr_1
+$ docker logs -f nodeexample_nginx_1
 ```
 
 To rebuild a container after changing a Dockerfile:

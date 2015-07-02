@@ -95,7 +95,7 @@ As a starting point, this repo only includes some very basic components:
 - nginx: configured as a reverse proxy
 - app: node/express scaffolding
 
-You can extend the node/express app or you can replace it with an applicaiton framework of your choice, like Flask. You'll just need to remember to modify .travis.yml to install and run your tests on Travis.
+You can extend the node/express app or you can replace it with an application framework of your choice, like Flask. You'll just need to remember to modify .travis.yml to install and run your tests on Travis.
 
 You can also add additional services like mongodb, mysql, redis, and elasticsearch as separate containers. As a convention, add each container in its own directory under the project root and configure the container in docker-compose.yml.
 

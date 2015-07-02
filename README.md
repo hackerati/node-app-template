@@ -2,18 +2,22 @@
 
 This is a starting point for a node.js app or micro-service. Just clone and rename the repo and start coding.
 
-## Pre-requisites
+## Running locally
 
-Vagrant: http://www.vagrantup.com/downloads.html
+### Mac and Windows Pre-requisites
 
-Virtualbox: https://www.virtualbox.org/wiki/Downloads
+Assuming you're working on a Mac or Windows machine, you'll need a Linux virtual machine to use for development. Vagrant and Virtualbox are a great, free solution (though this hasn't been tested on Windows):
 
-Or install virtuabox using brew:
+- Vagrant: http://www.vagrantup.com/downloads.html
+- Virtualbox: https://www.virtualbox.org/wiki/Downloads
+
+You can also install Virtuabox on a Mac using Homebrew:
+
 ```bash
 $ brew cask install virtualbox
 ```
 
-## Running locally
+Now you can start the environment:
 
 ```bash
 $ git clone git@github.com:thehackerati/node-app-template.git
@@ -22,7 +26,7 @@ $ vagrant plugin install vagrant-docker-compose
 $ vagrant up
 ```
 
-You'll be prompted to login using an account with admin privileges on your host machine to enable syncronization of your source tree with the Vagrant VM.
+You'll be prompted to login using an account with admin privileges on your host machine to enable network syncronization of the source tree on your host machine with the Vagrant VM.
 
 Once the VM is started, check out the app:
 
@@ -30,7 +34,52 @@ Once the VM is started, check out the app:
 $ open http://192.168.59.103:8080
 ```
 
+### Linux Pre-requisites
+
+On Linux, you can run Docker natively, so you don't actually need a virtual machine. To install Docker, make sure you're logged in as a user with sudo privileges. You'll need wget, and you'll need to make sure you have installed all of the pre-requisites for your version of Linux, which can be numerous (there were none for Ubuntu 64-bit 14.04.2).
+
+- Docker: https://docs.docker.com/installation/
+- Docker Compose: https://docs.docker.com/compose/install/
+
+Start by installing Docker:
+
+```bash
+$ wget -qO- https://get.docker.com/ | sh
+$ sudo usermod -aG docker <your user name>
+```
+
+Now verify that Docker is properly installed:
+
+```bash
+docker run hello-world
+```
+
+Then install Docker Compose:
+
+```bash
+sudo -i curl -L https://github.com/docker/compose/releases/download/1.3.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+```
+
+At this point, you can clone the repo and start the Docker containers:
+
+```bash
+$ git clone git@github.com:thehackerati/node-app-template.git
+$ cd node-app-template
+$ docker-compose up
+```
+
+Once the Docker containers have started, check out the app:
+
+```bash
+$ open http://127.0.0.1:8080
+```
+
+Note that docker containers run directly on their Linux host machines, not in a virtual guest machine, so you can access any exposed ports on the loopback address: 127.0.0.1.
+
 ## What's Inside
+
+Vagrant configures and launches a Virtualbox VM based on the Vagrantfile located in the project root and then runs docker-compose in the VM. Docker compose configures launches the Docker containers that are specified in docker-compose.yml, each according to its Dockerfile.
 
 As a starting point, this repo only includes some very basic components:
 

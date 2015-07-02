@@ -51,14 +51,14 @@ $ sudo usermod -aG docker <your user name>
 Now verify that Docker is properly installed:
 
 ```bash
-docker run hello-world
+$ docker run hello-world
 ```
 
 Then install Docker Compose:
 
 ```bash
-sudo -i curl -L https://github.com/docker/compose/releases/download/1.3.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+$ sudo -i curl -L https://github.com/docker/compose/releases/download/1.3.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+$ chmod +x /usr/local/bin/docker-compose
 ```
 
 At this point, you can clone the repo and start the Docker containers:

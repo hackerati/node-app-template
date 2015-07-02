@@ -123,14 +123,29 @@ This environment is designed to support GitHub Flow, which is described in more 
     - Travis will run tests on push. Need to refine integration.
     - Deploy to AWS staging and production
 
-### Working with Containers
+### Working with Docker Containers
+
+You can find lots of useful information about Docker containers here:
+
+https://docs.docker.com/userguide/usingdocker/
+
+Here are some useful Docker commands. If your containers are running in a VM under Vagrant, first SSH into the VM:
+
+```bash
+$ vagrant ssh
+```
 
 To tail the log files from your containers:
 
 ```bash
-$ vagrant ssh
 $ docker logs -f nodeexample_appsvr_1
 $ docker logs -f nodeexample_nginx_1
+```
+
+To open a shell in your Docker container
+
+```bash
+$ docker run -i -t nodexample_appsvr /bin/bash
 ```
 
 To rebuild a container after changing a Dockerfile:
@@ -138,6 +153,7 @@ To rebuild a container after changing a Dockerfile:
 ```bash
 $ TODO
 ```
+
 ## Setting Up Your Project
 
 ### Setting Up Your Repo

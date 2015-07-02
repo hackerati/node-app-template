@@ -1,12 +1,12 @@
 # node-app-template
 
-This is a starting point for a node.js app or micro-service. Just clone and rename the repo and start coding.
+This is a starting point for a Docker-based node.js app or micro-service, configured for continuous integration with Travis and continuous deployment to AWS. Just clone and rename the repo and start coding.
 
 ## Running locally
 
-### Mac and Windows Pre-requisites
+### Mac Pre-requisites
 
-Assuming you're working on a Mac or Windows machine, you'll need a Linux virtual machine to use for development. Vagrant and Virtualbox are a great, free solution (though this hasn't been tested on Windows):
+If you're working on a Mac, you'll need a Linux virtual machine to use for development. Vagrant and Virtualbox are a great, free solution:
 
 - Vagrant: http://www.vagrantup.com/downloads.html
 - Virtualbox: https://www.virtualbox.org/wiki/Downloads
@@ -33,6 +33,15 @@ Once the VM is started, check out the app:
 ```bash
 $ open http://192.168.59.103:8080
 ```
+### Windows Pre-requisites
+
+Like the Mac, Windows requires you to run Linux in a virtual machine, and Vagrant/Virtualbox are a great choice!
+
+TODO:
+- Other pre-requisites?
+- Install vagrant and virtualbox on Windows
+- Clone the repo and vagrant up
+- Test
 
 ### Linux Pre-requisites
 
@@ -101,7 +110,7 @@ This environment is designed to support GitHub Flow, which is described in more 
 - Develop the new feature and all necessary unit and functional tests. We're not dogmatic about whether you should do so in a test-first manner; use your judgement. But do write automated tests.
 - On save, tests will automatically run and the application will automatically reload in the container. Repeat the code/test cycle until the test passes.
     - TODO: get grunt tests to run automatically in container
-		- TODO: look for clock skew issues in container
+    - TODO: look for clock skew issues in container
 - Frequently commit your changes.
 - Push your changes to a Github feature branch of the same name at least once a day.
 - Repeat until you’re ready to merge your commits (remember to frequently rebase with upstream master)
@@ -125,18 +134,21 @@ To rebuild a container after changing a Dockerfile:
 ```bash
 $ TODO
 ```
+## Setting Up Your Project
 
-## Continuous Integration
+### Setting Up Your Repo
+
+TODO: Clone this repo, rename, repoint, push
+
+### Setting Up Continuous Integration
 
 You'll need to setup your own continous integration service. This repo comes with [TravisCI](http://www.travis-ci.com) already configured. Once you've pushed your code to Github, login into Travis and connect it to your repo. By default, your first build will happen the next time that you push this repo to Github.
 
-## Staging and Production Environments
-
-### AWS Staging Environment
+### Setting Up AWS Staging Environment
 
 TODO: Setup automated deploy to AWS Elastic Beanstalk
 
-### AWS Production Environment
+### Setting Up AWS Production Environment
 
 TODO: Setup automated deploy to AWS Elastic Beanstalk
 

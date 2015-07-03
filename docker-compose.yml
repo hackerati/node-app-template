@@ -4,7 +4,7 @@ appsvr:
     - "app:/src/app"
   expose:
     - "3000"
-  command: nodemon -L app/bin/www
+  command: npm test
 
 nginx:
   restart: always

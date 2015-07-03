@@ -129,23 +129,31 @@ You can find lots of useful information about Docker containers here:
 
 https://docs.docker.com/userguide/usingdocker/
 
-Here are some useful Docker commands. If your containers are running in a VM under Vagrant, first SSH into the VM:
+Here are some useful Docker commands that you can run from your host, assuming your containers are running in a VM under Vagrant. Make sure that you run these from your project root directory, where your Vagrantfile is located.
+
+To ssh to your VM:
 
 ```bash
 $ vagrant ssh
 ```
 
+To show the Docker containers that are currently running:
+
+```bash
+$ vagrant ssh -c 'docker ps'
+```
+
 To tail the log files from your containers:
 
 ```bash
-$ docker logs -f nodeexample_appsvr_1
-$ docker logs -f nodeexample_nginx_1
+$ vagrant ssh -c 'docker logs -f nodeexample_appsvr_1'
+$ vagrant ssh -c 'docker logs -f nodeexample_nginx_1'
 ```
 
 To open a shell in your Docker container
 
 ```bash
-$ docker run -i -t nodexample_appsvr /bin/bash
+$ vagrant ssh -c 'docker run -i -t nodeexample_appsvr /bin/bash'
 ```
 
 To rebuild a container after changing a Dockerfile:

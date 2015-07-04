@@ -27,13 +27,13 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-				    js: {
-                files: ['Gruntfile.js', 'app.js', 'routes/**/*.js', 'specs/**/*.js'],
-                tasks: ['jasmine_node']
-				    }
+            js: {
+                files: ['app/*.js', 'app/routes/**/*.js', 'app/specs/**/*.js'],
+                tasks: ['jshint', 'jasmine_node']
+            }
         },
         jshint: {
-            files: ['Gruntfile.js', 'app.js', 'routes/**/*.js', 'specs/**/*.js'],
+            files: ['app/*.js', 'app/routes/**/*.js', 'app/specs/**/*.js'],
             options: {
                 globals: {
                     jQuery: true
@@ -48,7 +48,7 @@ module.exports = function(grunt) {
                 extensions: 'js',
                 specNameMatcher: 'spec'
             },
-            all: ['specs/']
+            all: []
         }
     });
 

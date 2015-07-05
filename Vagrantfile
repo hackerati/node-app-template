@@ -14,5 +14,5 @@ Vagrant.configure("2") do |config|
 		config.vm.provision :shell, inline: "apt-get update"
 
     config.vm.provision :docker
-    config.vm.provision :docker_compose, yml: "/src/docker-compose.yml", rebuild: true, project_name: "node-example", run: "always"
+    config.vm.provision :docker_compose, yml: "/src/docker-compose.yml", rebuild: true, project_name: "node-app-template", run: "always"
 end

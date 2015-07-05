@@ -153,7 +153,7 @@ $ vagrant ssh -c 'docker logs -f nodeexample_nginx_1'
 To open a shell in your Docker container
 
 ```bash
-$ vagrant ssh -c 'docker run -i -t nodeexample_appsvr /bin/bash'
+$ vagrant ssh -c 'docker exec -i -t nodeexample_appsvr_1 bash'
 ```
 
 To rebuild a container after changing a Dockerfile:

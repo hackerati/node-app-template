@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon -L app/bin/www",
+    "start": "nodemon -L /src/app/bin/www",
     "test": "grunt"
   },
   "dependencies": {

@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         },
         nodemon: {
             dev: {
-                script: 'app/bin/www',
+                script: 'bin/www',
                 options: {
                     args: ['dev'],
                     nodeArgs: ['--debug'],
@@ -28,12 +28,12 @@ module.exports = function(grunt) {
         },
         watch: {
             js: {
-                files: ['app/*.js', 'app/routes/**/*.js', 'app/specs/**/*.js'],
+                files: ['*.js', 'routes/**/*.js', 'specs/**/*.js'],
                 tasks: ['jshint', 'jasmine_node']
             }
         },
         jshint: {
-            files: ['app/*.js', 'app/routes/**/*.js', 'app/specs/**/*.js'],
+            files: ['*js', 'routes/**/*.js', 'specs/**/*.js'],
             options: {
                 globals: {
                     jQuery: true

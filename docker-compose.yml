@@ -1,10 +1,11 @@
+# Start the node.js application server.
 appsvr:
   build: ./app
   volumes:
     - "app:/src/app"
   expose:
     - "3000"
-  command: npm test
+  command: /src/app/start.sh
 
 nginx:
   restart: always

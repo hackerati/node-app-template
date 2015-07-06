@@ -18,7 +18,7 @@
  
 ################################################################################
 
-FROM node:0.10.38
+FROM node:latest
 
 RUN npm install nodemon -g && \
     npm install grunt-cli -g

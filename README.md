@@ -94,12 +94,20 @@ Vagrant configures and launches a Virtualbox VM based on the Vagrantfile located
 
 As a starting point, this repo only includes some very basic components:
 
-- nginx: configured as a reverse proxy
-- app: node/express scaffolding
+- LICENSE: It's MIT licensed!
+- README.md: this file
+- Vagrantfile: configures a VM that runs docker-compose on boot
+- app: Docker container based on the official node image, along with the node/express app scaffolding
+- docker-compose.yml: runs the configured Docker containers
+- nginx: Docker container for the official nginx image, configured as a reverse proxy for the app
 
-You can extend the node/express app or you can replace it with an application framework of your choice, like Flask. You'll just need to remember to modify .travis.yml to install and run your tests on Travis.
+You can add additional services like mongodb, mysql, redis, and elasticsearch as separate containers. As a convention, add each container in its own directory under the project root and configure the container in docker-compose.yml.
 
-You can also add additional services like mongodb, mysql, redis, and elasticsearch as separate containers. As a convention, add each container in its own directory under the project root and configure the container in docker-compose.yml.
+Note: Docker uses volumes to mount host directories in containers; so you can keep directories on your host and your container in sync. This allows you to do things like develop in your host using your favorite editor while you watch for changes to code in your container so you can automatically reload your application and/or run tests. Docker containers mount volumes at boot time, not at build time, in order to maintain portability from host to host. If you try to mount a volume on a mount point inside your container, the contents of the mounted volume will overwrite any files or directories that might have previously existed in your mount point.
+
+This makes installing application dependencies at build time (e.g. running npm install, pip or whatever package manager you use) a little tricky. They key is to install dependencies in a separate directory from your volume mount point, so they don't get overwritten when the container boots. You can then either modify your application to look for dependencies wherever you installed them, or you can copy the dependencies to your mounted volume before starting your application. Note that any changes to your mounted volume will be reflected in your host directory, which isn't desirable. Neither is having a non-standard deployment directory structure. TODO: decide on the best approach.
+
+Here, ./app/Dockerfile installs dependencies in /opt/app in the container at build time. At boot time, docker-compose.yml mounts the ./app directory in the host (project root) on the /src/app volume in the appsvr container and then runs /src/app/start.sh in the container, which copies the node_modules directory from /opt/app to /src/app. In doing so, ./app/node_modules will also be created in the host.
 
 ## Working in the Environment
 
@@ -111,27 +119,27 @@ This environment is designed to support GitHub Flow, which is described in more 
 - Create a local feature branch.
 - Develop the new feature and all necessary unit and functional tests. We're not dogmatic about whether you should do so in a test-first manner; use your judgement. But do write automated tests.
 - On save, tests will automatically run and the application will automatically reload in the container. Repeat the code/test cycle until the test passes.
-    - TODO: get grunt tests to run automatically in container
     - TODO: look for clock skew issues in container
 - Frequently commit your changes.
 - Push your changes to a Github feature branch of the same name at least once a day.
+- Travis will run tests automatically on push (move this to on opening a pull request?)
 - Repeat until you’re ready to merge your commits (remember to frequently rebase with upstream master)
 - Push to Github and open a pull request
 - Review and merge the pull request to staging branch to deploy to staging environment
 - Acceptance test and merge the pull request to production branch to deploy to production environment
 - TODO:
-    - Travis will run tests on push. Need to refine integration.
     - Deploy to AWS staging and production
 
 ### Working with Docker Containers
 
 You can find lots of useful information about Docker containers here:
 
-https://docs.docker.com/userguide/usingdocker/
+- https://docs.docker.com/userguide/usingdocker/
+- https://github.com/wsargent/docker-cheat-sheet
 
 Here are some useful Docker commands that you can run from your host, assuming your containers are running in a VM under Vagrant. Make sure that you run these from your project root directory, where your Vagrantfile is located.
 
-To ssh to your VM:
+To ssh to your VM (it's just a Linux host):
 
 ```bash
 $ vagrant ssh
@@ -164,9 +172,9 @@ $ TODO
 
 ## Setting Up Your Project
 
-### Setting Up Your Repo
+### Setting Up Your Own Repo
 
-TODO: Clone this repo, rename, repoint, push
+TODO: Fork this repo, rename
 
 ### Setting Up Continuous Integration
 

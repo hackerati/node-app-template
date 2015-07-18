@@ -4,6 +4,7 @@ node_js:
 before_install: npm install -g grunt-cli
 install: cd app &&  npm install
 script: grunt test
+before_deploy: cd ..
 deploy:
   provider: elasticbeanstalk
   access_key_id: AKIAIKI74LODOS5L3GRQ

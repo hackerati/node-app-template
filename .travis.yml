@@ -5,17 +5,34 @@ before_install: npm install -g grunt-cli
 install: cd app &&  npm install
 script: grunt test
 before_deploy: cd ..
+
 deploy:
-  provider: elasticbeanstalk
-  access_key_id: AKIAIKI74LODOS5L3GRQ
-  secret_access_key:
-    secure: AMaSSYpJI1bBlcMDxawnv8s6Kv26YKOu9RXpjpoMG/RIaXjiewES2+ptq8oEYtO0S40MpHyPTh0N0vnxwd27+Oqv9t94zvkiPgI6PgKbp4AVxPjfJJ/KycI6Kb09xToJIu1Nxa193Fx9zpjKI0XFsS57LF8e7U/OsouscdnTusoARDYZ9uwn0gTMWcr/s53EPnrdIaeLU2vZvM5t0d0Atjh9SCDuuY83j1HDKhlWUu31Kl4FFLboUDOXlbCRQtzO8miNQ4xDImZlRJAU8LP4pIcc6s/NpTY6HUHgMhK83q7ugfMDDJxyw4nRkKC9lEZ0+rBVPKz/1bRHjneRDeXOcJfkZOx+vhf5Z0AkDU8yDdF33ic9QxBJS6zvxw5h1zCdGAHlPoGYxRElqlq0wmc2kOOVDg7nIHrYJsTw5H5EIrQMDDjADE7WQNCHTUB3rH3/hdAmMD9MuSJh8FuPysCpoiCRXMgt5DwVRezDulwglWeST750BFo6/Kk3tjs7SVQ+SPFg1jC9vtacfk+1VqtPp5j9pRfzylToECynBcnZhyXOOLCGWgO8JbuApOJH72Q+TfhdhPCdTnHSBgtma4t1QAOew+IwxgCLBygGlKpa2tM4s9wBC6Mcx8vGbF0BxYFTTZ5+KRHBJUREJscNKf5FKMC9sW82c+nijwROQV/FrEs=
-  region: us-east-1
-  app: node-app-template
-  env: NodeAppTemplateProd
-  bucket_name: node-app-template-deploy
-  bucket_path: production
-  skip_cleanup: true
-  on:
-    repo: thehackerati/node-app-template
-    branch: master
+  # Deploy master branch to production environment  on merge (or push)
+  - provider: elasticbeanstalk
+    access_key_id: AKIAIKI74LODOS5L3GRQ
+    secret_access_key:
+      secure: AMaSSYpJI1bBlcMDxawnv8s6Kv26YKOu9RXpjpoMG/RIaXjiewES2+ptq8oEYtO0S40MpHyPTh0N0vnxwd27+Oqv9t94zvkiPgI6PgKbp4AVxPjfJJ/KycI6Kb09xToJIu1Nxa193Fx9zpjKI0XFsS57LF8e7U/OsouscdnTusoARDYZ9uwn0gTMWcr/s53EPnrdIaeLU2vZvM5t0d0Atjh9SCDuuY83j1HDKhlWUu31Kl4FFLboUDOXlbCRQtzO8miNQ4xDImZlRJAU8LP4pIcc6s/NpTY6HUHgMhK83q7ugfMDDJxyw4nRkKC9lEZ0+rBVPKz/1bRHjneRDeXOcJfkZOx+vhf5Z0AkDU8yDdF33ic9QxBJS6zvxw5h1zCdGAHlPoGYxRElqlq0wmc2kOOVDg7nIHrYJsTw5H5EIrQMDDjADE7WQNCHTUB3rH3/hdAmMD9MuSJh8FuPysCpoiCRXMgt5DwVRezDulwglWeST750BFo6/Kk3tjs7SVQ+SPFg1jC9vtacfk+1VqtPp5j9pRfzylToECynBcnZhyXOOLCGWgO8JbuApOJH72Q+TfhdhPCdTnHSBgtma4t1QAOew+IwxgCLBygGlKpa2tM4s9wBC6Mcx8vGbF0BxYFTTZ5+KRHBJUREJscNKf5FKMC9sW82c+nijwROQV/FrEs=
+    region: us-east-1
+    app: node-app-template
+    env: NodeAppTemplateProd
+    bucket_name: node-app-template-deploy
+    bucket_path: production
+    skip_cleanup: true
+    on:
+      repo: thehackerati/node-app-template
+      branch: master
+
+  # Deploy staging branch to staging environment  on merge (or push)
+  - provider: elasticbeanstalk
+    access_key_id: AKIAIKI74LODOS5L3GRQ
+    secret_access_key:
+      secure: AMaSSYpJI1bBlcMDxawnv8s6Kv26YKOu9RXpjpoMG/RIaXjiewES2+ptq8oEYtO0S40MpHyPTh0N0vnxwd27+Oqv9t94zvkiPgI6PgKbp4AVxPjfJJ/KycI6Kb09xToJIu1Nxa193Fx9zpjKI0XFsS57LF8e7U/OsouscdnTusoARDYZ9uwn0gTMWcr/s53EPnrdIaeLU2vZvM5t0d0Atjh9SCDuuY83j1HDKhlWUu31Kl4FFLboUDOXlbCRQtzO8miNQ4xDImZlRJAU8LP4pIcc6s/NpTY6HUHgMhK83q7ugfMDDJxyw4nRkKC9lEZ0+rBVPKz/1bRHjneRDeXOcJfkZOx+vhf5Z0AkDU8yDdF33ic9QxBJS6zvxw5h1zCdGAHlPoGYxRElqlq0wmc2kOOVDg7nIHrYJsTw5H5EIrQMDDjADE7WQNCHTUB3rH3/hdAmMD9MuSJh8FuPysCpoiCRXMgt5DwVRezDulwglWeST750BFo6/Kk3tjs7SVQ+SPFg1jC9vtacfk+1VqtPp5j9pRfzylToECynBcnZhyXOOLCGWgO8JbuApOJH72Q+TfhdhPCdTnHSBgtma4t1QAOew+IwxgCLBygGlKpa2tM4s9wBC6Mcx8vGbF0BxYFTTZ5+KRHBJUREJscNKf5FKMC9sW82c+nijwROQV/FrEs=
+    region: us-east-1
+    app: node-app-template
+    env: NodeAppTemplateStaging
+    bucket_name: node-app-template-deploy
+    bucket_path: staging
+    skip_cleanup: true
+    on:
+      repo: thehackerati/node-app-template
+      branch: staging

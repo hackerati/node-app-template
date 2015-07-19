@@ -1,4 +1,4 @@
-# Start the node.js application server.
+# Start the node.js application server for local development.
 appsvr:
   build: ./app
   volumes:

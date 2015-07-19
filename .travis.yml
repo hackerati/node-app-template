@@ -18,4 +18,4 @@ deploy:
   skip_cleanup: true
   on:
     repo: thehackerati/node-app-template
-    branch: dockerbuild
+    branch: master

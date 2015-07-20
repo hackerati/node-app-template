@@ -29,7 +29,7 @@ node_modules
 # Vagrant machines
 .vagrant
 
-.swp
+*.swp
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

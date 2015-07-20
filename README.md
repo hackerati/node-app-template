@@ -34,7 +34,7 @@ You'll be prompted to login using an account with admin privileges on your host 
 Once the VM is started, check out the app:
 
 ```bash
-$ open http://192.168.59.103:8080
+$ open http://192.168.59.103
 ```
 ### Windows Pre-requisites
 

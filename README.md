@@ -77,6 +77,7 @@ At this point, you can clone the repo and start the Docker containers:
 ```bash
 $ git clone git@github.com:thehackerati/node-app-template.git
 $ cd node-app-template
+$ docker-compose build
 $ docker-compose up
 ```
 

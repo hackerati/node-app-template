@@ -17,6 +17,7 @@ You can also install Virtuabox on a Mac using Homebrew:
 
 ```bash
 $ brew cask install virtualbox
+$ brew cask install vagrant
 ```
 
 Now you can start the environment:

@@ -29,7 +29,7 @@ $ vagrant plugin install vagrant-docker-compose
 $ vagrant up
 ```
 
-You'll be prompted to login using an account with admin privileges on your host machine to enable network syncronization of the source tree on your host machine with the Vagrant VM.
+You'll be prompted to login using an account with admin privileges on your host machine to enable network synchronization of the source tree on your host machine with the Vagrant VM.
 
 Once the VM is started, check out the app:
 

@@ -36,6 +36,14 @@ Once the VM is started, check out the app:
 ```bash
 $ open http://192.168.59.103
 ```
+
+If you are getting an error, give it a minute but you may need to run
+
+```bash
+$ vagrant ssh
+```
+Then try refreshing or opening the page again.
+
 ### Windows Pre-requisites
 
 Like the Mac, Windows requires you to run Linux in a virtual machine, and Vagrant/Virtualbox are a great choice!

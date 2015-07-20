@@ -36,5 +36,5 @@ RUN cd /tmp/app && npm install
 
 WORKDIR /src/app
 
-# Run app using CMD from the default ENTRYPOINT: /bin/sh -c run-dev-mode.sh
-CMD ["run-dev-mode.sh"]
+# Run CMD from the default ENTRYPOINT: /bin/sh -c /src/app/run-dev-mode.sh
+CMD ["/src/app/run-dev-mode.sh"]

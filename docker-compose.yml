@@ -11,7 +11,7 @@ nginx:
   restart: always
   build: ./nginx
   ports:
-    - "80:80"
+    - "80:8080"
   volumes:
     - /www/public
   volumes_from:

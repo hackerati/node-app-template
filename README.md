@@ -17,6 +17,7 @@ You can also install Virtuabox on a Mac using Homebrew:
 
 ```bash
 $ brew cask install virtualbox
+$ brew cask install vagrant
 ```
 
 Now you can start the environment:
@@ -28,13 +29,21 @@ $ vagrant plugin install vagrant-docker-compose
 $ vagrant up
 ```
 
-You'll be prompted to login using an account with admin privileges on your host machine to enable network syncronization of the source tree on your host machine with the Vagrant VM.
+You'll be prompted to login using an account with admin privileges on your host machine to enable network synchronization of the source tree on your host machine with the Vagrant VM.
 
 Once the VM is started, check out the app:
 
 ```bash
-$ open http://192.168.59.103:8080
+$ open http://192.168.59.103
 ```
+
+If you are getting an error, give it a minute but you may need to run
+
+```bash
+$ vagrant ssh
+```
+Then try refreshing or opening the page again.
+
 ### Windows Pre-requisites
 
 Like the Mac, Windows requires you to run Linux in a virtual machine, and Vagrant/Virtualbox are a great choice!

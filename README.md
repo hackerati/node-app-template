@@ -81,12 +81,43 @@ $ docker-compose build
 $ docker-compose up
 ```
 
+You might see the following error message when attempting to start the containers:
+
+```bash
+Cannot start container <container>: Error starting userland proxy: listen tcp 0.0.0.0:80: bind: address already in use
+```
+
+If that is the case, kill all processes using that adress and try starting the containers again:
+
+```bash
+$ sudo fuser -k 80/tcp
+$ docker-compose up
+```
+
+You might additionally see the following error message:
+
+```bash
+Conflict. The name "nodeapptemplate_nginx_1" is already in use by container <container>. You have to delete (or rename) that container to be able to reuse that name.
+```
+
+If that is the case, stop and remove all containers and restart:
+
+```bash
+$ docker-compose stop
+$ docker-compose rm
+$ docker-compose up
+```
+
 Once the Docker containers have started, check out the app:
 
 ```bash
-$ open http://127.0.0.1:8080
+$ open http://127.0.0.1:8080 #on mac
+$ curl http://127.0.0.1:80 #on linux
 ```
 
+If you use a firefox to check out the app, make sure you have 'use system proxy settings' checked off in Connection Settings, which can be found under the Network Tab in Advanced Preferences
+
+ 
 Note that docker containers run directly on their Linux host machines, not in a virtual guest machine, so you can access any exposed ports on the loopback address: 127.0.0.1.
 
 ## What's Inside

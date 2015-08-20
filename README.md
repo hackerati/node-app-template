@@ -215,19 +215,148 @@ $ TODO
 
 ### Setting Up Your Own Repo
 
-TODO: Fork this repo, rename
+If you want to contribute to this project, please fork this repo. If you want to build an application using this project as a foundation or if you want to create a template for a different Web framework:
+
+```bash
+$ git clone git@github.com:thehackerati/node-app-template.git my-repo-name
+$ cd my-repo-name
+```
+
+Create a new repo on Github. Let's call it me/my-repo-name. Then push to your new repo:
+
+```bash
+$ git remote set-url origin git@github.com:me/my-repo-name.git
+$ git push -u origin master
+```
+
+Add a staging branch to your repo on Github:
+
+```bash
+$ git checkout -b staging
+$ git push -u origin staging
+```
 
 ### Setting Up Continuous Integration
 
-You'll need to setup your own continous integration service. This repo comes with [TravisCI](http://www.travis-ci.com) already configured. Once you've pushed your code to Github, login into Travis and connect it to your repo. By default, your first build will happen the next time that you push this repo to Github.
+You'll need to setup your own continous integration service. This repo comes with [TravisCI](http://www.travis-ci.org) already configured. Once you've pushed your code to Github, login into Travis and connect it to your repo. By default, your first build will happen the next time that you push this repo to Github.
 
-### Setting Up AWS Staging Environment
+#### Install Travis CLI
 
-TODO: Setup automated deploy to AWS Elastic Beanstalk
+Make sure you have at least Ruby 1.9.3 (2.0.0 recommended) installed.
+
+You can check your Ruby version like this:
+
+```bash
+$ ruby -v
+ruby 2.1.6p336 (2015-04-13 revision 50298) [x86_64-linux-gnu]
+```
+
+Install Travis CLI and make sure it works:
+
+```bash
+$ gem install travis -v 1.8.0 --no-rdoc --no-ri
+$ travis version
+1.8.0
+```
+
+#### Enter your AWS Access Key ID and Secret Access Key:
+
+You can find your AWS keys here: https://console.aws.amazon.com/iam/home?#security_credential
+
+The Access Key ID acts as a username and does not need to be encrypted. You can replace the access_key_id property in .travis.yml with your Access Key ID.
+
+The Secret Access Key acts as a password and should be encrypted in the .travis.yml file. To generate an encrypted AWS secret access key:
+
+```bash
+$ travis encrypt --add deploy.secret_access_key
+```
+
+You'll be prompted to paste your secret key. This will place the new encrypted key at the end of the .travis.yml file:
+
+```bash
+  secret_access_key:
+    secure: <key>
+```
+
+Make sure your Github repository and AWS environment names match your configuration.
+
+To validate your .travis.yml file, install Travis Lint:
+
+```bash
+$ sudo gem install travis-lint
+```
+
+Create an AWS S3 bucket and directories for deployment. This appears to fail silently if you forget to do it, so don't forget!
+
+### Setting Up AWS Elastic Beanstalk on Local Development Environment
+
+NOTE: This is only relevant on the Docker Host (e.g. Linux).
+
+Install Elastic Beanstalk CLI
+
+TODO: Add EB CLI install to Vagrantfile for Mac. Then vagrant ssh
+
+Clone the repo and run the environment locally:
+
+```bash
+$ git clone git@github.com:thehackerati/node-app-template.git
+$ cd node-app-template
+$ eb init
+$ eb local run
+```
+
+Test the local environment:
+
+```bash
+$ curl http://127.0.0.1
+```
 
 ### Setting Up AWS Production Environment
 
-TODO: Setup automated deploy to AWS Elastic Beanstalk
+```bash
+$ eb create
+WARNING: The Multi-container Docker platform requires additional ECS permissions. Add the permissions to the aws-elasticbeanstalk-ec2-role or use your own instance profile by typing "-ip {profile-name}".
+For more information see: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_ecstutorial.html#create_deploy_docker_ecstutorial_role
+Enter Environment Name
+(default is node-app-template-dev): nodeAppTemplateProd
+Enter DNS CNAME prefix
+(default is nodeAppTemplateProd):
+lots of output...
+```
+
+Test the production environment:
+
+```bash
+$ curl http://nodeAppTemplateProd.elasticbeanstalk.com 
+```
+
+### Setting Up AWS Staging Environment
+
+```bash
+eb clone                    │
+Enter name for Environment Clone
+(default is my-cloned-env): nodeAppTemplateStaging
+Enter DNS CNAME prefix
+(default is nodeAppTemplateStaging):
+lots of output...
+```
+
+Test the staging environment:
+
+```bash
+$ curl http://nodeAppTemplateStaging.elasticbeanstalk.com 
+```
+
+### Setting Up Automated Build and Deploy to AWS Elastic Beanstalk
+
+Configure DockerHub to build staging and production repositories:
+
+Add Repository -> Automated Build
+Select your repository on Github
+
+Type        Name        Dockerfile Location     Tag Name
+Branch      staging     /app                    staging-latest
+Branch      master      /app                    latest
 
 ## License
 Copyright (c) 2015 The Hackerati. This software is licensed under the MIT License.

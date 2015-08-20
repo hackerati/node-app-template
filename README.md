@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/thehackerati/node-app-template.svg?branch=master)](https://travis-ci.org/thehackerati/node-app-template)
 
-This is a starting point for a Docker-based node.js app or micro-service, configured for continuous integration with Travis and continuous deployment to AWS. Just clone and rename the repo and start coding.
+This is a starting point for a Docker-based node.js app or micro-service, configured for continuous integration with Travis and continuous deployment to AWS. You can learn more about this project and Agile Engineering on our [blog](http://blog.thehackerati.com/post/126701363476/node-app-template). Just clone and rename the repo and start coding.
 
 ## Running locally
 

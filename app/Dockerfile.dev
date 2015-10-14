@@ -27,12 +27,13 @@ FROM thehackerati/node-app-template
 
 # Install development and debugging tools
 RUN npm install nodemon -g && \
-    npm install grunt-cli -g
+    npm install grunt-cli -g && \
+    npm install flatten-packages -g
 
 # Use changes to package.json to force Docker not to use the cache
 # when we change our application's nodejs dependencies:
 ADD package.json /tmp/app/package.json
-RUN cd /tmp/app && npm install
+RUN cd /tmp/app && npm install && flatten-packages
 
 WORKDIR /src/app
 

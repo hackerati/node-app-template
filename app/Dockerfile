@@ -3,7 +3,7 @@
 # 
 ###########################################################################
 
-FROM thehackerati/node-base:latest
+FROM node:argon
 
 # Use changes to package.json to force Docker not to use the cache
 # when we change our application's nodejs dependencies:

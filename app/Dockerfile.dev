@@ -34,7 +34,7 @@ RUN npm install nodemon -g && \
 ADD package.json /tmp/app/package.json
 RUN cd /tmp/app && npm install
 
-WORKDIR /src/app
+WORKDIR /opt/app
 
-# Run CMD from the default ENTRYPOINT: /bin/sh -c /src/app/run-dev-mode.sh
-CMD ["/src/app/run-dev-mode.sh"]
+# Run CMD from the default ENTRYPOINT: /bin/sh -c /opt/app/run-dev-mode.sh
+CMD ["/opt/app/run-dev-mode.sh"]

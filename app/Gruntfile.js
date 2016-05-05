@@ -20,7 +20,7 @@ module.exports = function(grunt) {
                 options: {
                     args: ['dev'],
                     nodeArgs: ['--debug'],
-                    ext: 'js jade json',
+                    ext: 'js pug json',
                     ignore: ['node_modules/**'],
                     legacyWatch: true
                 }

@@ -48,11 +48,25 @@ Then try refreshing or opening the page again.
 
 Like the Mac, Windows requires you to run Linux in a virtual machine, and Vagrant/Virtualbox are a great choice!
 
-TODO:
-- Other pre-requisites?
-- Install vagrant and virtualbox on Windows
-- Clone the repo and vagrant up
-- Test
+You can install VirtualBox and Vagrant via [Chocolatey](http://chocolatey.org)
+
+```cmd
+> choco install virtualbox
+> choco install vagrant
+```
+
+Now you can start the environment:
+
+```cmd
+> git clone git@github.com:thehackerati/node-app-template.git
+> cd node-app-template
+> vagrant plugin install vagrant-docker-compose
+> vagrant up
+```
+
+You'll be prompted to login using an account with admin privileges on your host machine to enable network synchronization of the source tree on your host machine with the Vagrant VM.
+
+**Note**: Windows has a 4096 character limit on file paths.  This is important to note this restriction since node_modules constantly exceed this amount.  The solution is to flatten the node_modules directory (a step which is included in this codebase).
 
 ### Linux Pre-requisites
 
